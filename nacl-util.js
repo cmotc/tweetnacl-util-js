@@ -13,6 +13,22 @@
 
   var util = {};
 
+  util.stringToUint8(string) {
+    var string = btoa(unescape(encodeURIComponent(string))),
+        charList = string.split(''),
+        uintArray = [];
+    for (var i = 0; i < charList.length; i++) {
+        uintArray.push(charList[i].charCodeAt(0));
+    }
+    return new Uint8Array(uintArray);
+  }
+
+  util.uint8ToString(uintArray) {
+    var encodedString = String.fromCharCode.apply(null, uintArray),
+        decodedString = decodeURIComponent(escape(atob(encodedString)));
+    return decodedString;
+  }
+
   util.decodeUTF8 = function(s) {
     var i, d = unescape(encodeURIComponent(s)), b = new Uint8Array(d.length);
     for (i = 0; i < d.length; i++) b[i] = d.charCodeAt(i);
