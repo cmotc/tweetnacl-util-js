@@ -21,13 +21,13 @@
         uintArray.push(charList[i].charCodeAt(0));
     }
     return new Uint8Array(uintArray);
-  }
+  };
 
   util.uint8ToString(uintArray) {
     var encodedString = String.fromCharCode.apply(null, uintArray),
         decodedString = decodeURIComponent(escape(atob(encodedString)));
     return decodedString;
-  }
+  };
 
   util.decodeUTF8 = function(s) {
     var i, d = unescape(encodeURIComponent(s)), b = new Uint8Array(d.length);
