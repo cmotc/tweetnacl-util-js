@@ -13,9 +13,9 @@
 
   var util = {};
 
-  util.stringToUint8(string) {
-    var string = btoa(unescape(encodeURIComponent(string))),
-        charList = string.split(''),
+  util.stringToUint8 = function(s) {
+    var string = btoa(unescape(encodeURIComponent(s))),
+        charList = s.split(''),
         uintArray = [];
     for (var i = 0; i < charList.length; i++) {
         uintArray.push(charList[i].charCodeAt(0));
@@ -23,8 +23,8 @@
     return new Uint8Array(uintArray);
   };
 
-  util.uint8ToString(uintArray) {
-    var encodedString = String.fromCharCode.apply(null, uintArray),
+  util.uint8ToString  = function (arr) {
+    var encodedString = String.fromCharCode.apply(null, arr),
         decodedString = decodeURIComponent(escape(atob(encodedString)));
     return decodedString;
   };
